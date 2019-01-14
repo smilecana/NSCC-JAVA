@@ -21,4 +21,9 @@ public class Purchase {
 
     }
 
+    public static void main(String[] args) {
+        Purchase purchase = new Purchase();
+        purchase.calculateShipping();
+    }
+
 }
