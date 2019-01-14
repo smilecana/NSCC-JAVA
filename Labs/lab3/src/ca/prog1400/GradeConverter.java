@@ -6,7 +6,7 @@ public class GradeConverter {
 
 
     public static char [] grade = {'A','B','C','D','F'};
-    public static int [] score = {4,3,2,1,0};
+    public static double [] score = {4,3,2,1,0};
 
 
     public void getGrade () {
@@ -17,8 +17,9 @@ public class GradeConverter {
 
         for (int i = 0; i < grade.length; i++) {
             if (grade[i] == yourGrade){
-                System.out.println("Your grade is: " + score[i]);
-                //System.out.println(String.format("Your grade is: %.1f", score[i]));
+//                System.out.println("Your grade is: " + score[i]);
+                String g = String.format("Your grade is: %.1f", score[i]);
+                System.out.println(g);
             }
         }
 
