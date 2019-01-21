@@ -8,7 +8,7 @@ public class Team {
     double budget;
 //    int goals;
 //    int assistant;
-//    int total;
+    int totalGoals;
 //    String star;
 
     public Team (String teamName) {
@@ -27,6 +27,10 @@ public class Team {
         String budgetDecimal = String.format("%.2f",budget);
         return budgetDecimal;
     }
+
+//    public int setTotalGoals(int totalGoals) {
+//        this.totalGoals = totalGoals;
+//    }
 
     public String getRate(int total) {
 
