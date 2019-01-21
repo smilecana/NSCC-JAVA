@@ -12,7 +12,7 @@ public class Food {
 
     public String eatlt(String name) {
         //System.out.println("You just ate the " + name);
-        return "You just ate the " + name;
+        return "I just ate the " + name;
     }
 
     public String denylt(String type) {
