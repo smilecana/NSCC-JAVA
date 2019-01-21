@@ -9,7 +9,7 @@ public class Car {
     //Constructor
     public Car(String model, int currentspeed) {
         this.model = model;
-       // Car.carCount++;
+        Car.carCount++;
         this.currentspeed = currentspeed;
     }
 
