@@ -8,7 +8,10 @@ public class Team {
     double budget;
 //    int goals;
 //    int assistant;
-    int totalGoals;
+    int total;
+    int[] goals = new int[3];
+    int[] assists = new int[3];
+    Team[] teamName = new Team[3];
 //    String star;
 
     public Team (String teamName) {
@@ -16,6 +19,9 @@ public class Team {
         this.name = teamName;
     }
 
+    public String getName() {
+        return this.name;
+    }
     public String getBudget(){
         double max=100000;
         double min=0;
@@ -47,5 +53,17 @@ public class Team {
             return "";
         }
 
+    }
+
+    public void outputTeamReport(int[] goals, int[] assists,Team[] teamName) {
+        for (int i = 0; i < teamName.length; i++) {
+            int totalGA = goals[i] + assists[i];
+            System.out.println(teamName[i].name + ": "
+                    + " G - " + goals[i]
+                    + " A - " + assists[i]
+                    + " Total - " + totalGA
+                    + " Budget - $" + teamName[i].getBudget()
+                    + " Rating: " + teamName[i].getRate(totalGA) + " stars");
+        }
     }
 }

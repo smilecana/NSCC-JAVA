@@ -15,17 +15,19 @@ public class Player {
         this.name = playerName;
         this.goal = playerGoal;
         this.assist = playerAssistant;
-        Player.totalGoals += playerGoal;
-        Player.totalAssist += playerAssistant;
+//        Player.totalGoals += playerGoal;
+//        Player.totalAssist += playerAssistant;
     }
 
-    public static int getTotalGoals() {
-        return Player.totalGoals;
+
+    public int getTotalGoalsAndAssist() {
+
+        return this.assist + this.goal;
     }
 
-    public static int getTotalAssist() {
-        return Player.totalAssist;
-    }
+//    public static int getTotalAssist() {
+//        return Player.totalAssist;
+//    }
 
    // public int[] getGrade() {
 //        //return GradeConverter;
