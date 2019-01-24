@@ -5,19 +5,38 @@ import java.util.regex.Pattern;
 
 public class Main {
 
-    private static String getValidUserInputName(String name) {
+    // Valid name input (at least 3 characters)
+    private static String getValidUserInputName() {
 
         String nameInput;
         Scanner sc = new Scanner(System.in);
         do {
-            System.out.println("Enter a name");
+           nameInput = sc.nextLine();  //
 
-            nameInput = sc.nextLine();  //
+            if(nameInput.length() < 3){
+                System.out.println("Please input names(at least 3 characters).");
+            }
 
-        }while(nameInput.length() < 0);
+        }while(nameInput.length() < 3);
 
         return nameInput;
 
+    }
+
+    private static int getValidInputNum() {
+
+        int number;
+        Scanner sc = new Scanner(System.in);
+        do {
+
+            while(!sc.hasNextInt()){
+                System.out.println("Enter a positive number.");
+                sc.next();
+            }
+            number = sc.nextInt();  //
+        }while(number < 0);
+
+        return number;
     }
 
     public static void main(String[] args) {
@@ -29,26 +48,12 @@ public class Main {
 
         // Team input.
         Team [] myTeam = new Team[3];
-        String regEx = "^[a-zA-Z]{3,}";
-        Pattern pattern = Pattern.compile(regEx);
-        boolean m;
         String teamName;
 
         for (int i = 0; i < 3; i++) {
             int num = i +1;
             System.out.println("Enter name for team # "+ num + ": ");
-
-            do {
-                teamName = scan.nextLine();
-                String a = teamName.replace(" ","");
-                String b = a.replace("'","");
-                Matcher match = pattern.matcher(b);
-                m = match.matches();
-                if(!m){
-                    System.out.println("Please input names(at least 3 characters).");
-                }
-                //System.out.println(m);
-            }while(!m);
+            teamName = getValidUserInputName();
 
             Team team1 = new Team(teamName);
             myTeam[i] = team1;
@@ -61,11 +66,6 @@ public class Main {
         int goalsSum = 0;
         int assistsSum = 0;
         String name;
-        String regEx2 = "[0-9]{1,}$";
-        Pattern pattern2 = Pattern.compile(regEx2);
-        boolean n;
-        String g;
-        int a;
 
         System.out.println();
         System.out.println("PLAYER ENTRY");
@@ -76,40 +76,15 @@ public class Main {
                 System.out.println("Enter players for " + myTeam[i].getName());
                 int num = j + 1;
                 System.out.println("Enter name for player # " + num + ": ");
-                //char name = scan.next().charAt(0);
-                do {
-                    name = scan.nextLine();
-                    Matcher match = pattern.matcher(name.replace(" ",""));
-                    m = match.matches();
-                    if(!m){
-                        System.out.println("Please input names(at least 3 characters).");
-                    }
-                }while(!m);
-                //String name = scan.next();
+
+                name = getValidUserInputName();
                 System.out.println("Enter number of goals for " + name + ": ");
-                do {
-                    g = scan.nextLine();
-                    Matcher match = pattern2.matcher(g);
-                    n = match.matches();
-                    if(!n){
-                        System.out.println("Please input a number(zero or greater than zero).");
-                    }
-                }while(!n);
 
-                int gNum = Integer.parseInt(g);
+                int gNum = getValidInputNum();
+
                 System.out.println("Enter number of assists for " + name + ":");
-                do {
-                    g = scan.nextLine();
-                    Matcher match = pattern2.matcher(g);
-                    n = match.matches();
-                    if(!n){
-                        System.out.println("Please input a number(zero or greater than zero).");
-                    }
-                }while(!n);
 
-                //a = scan.nextInt();
-
-                int gNum2 = Integer.parseInt(g);
+                int gNum2 = getValidInputNum();
                 Player player1 = new Player(name,gNum,gNum2);
                 myPlayer[i][j] = player1;
 
@@ -137,7 +112,7 @@ public class Main {
             + " Budget - $" + myTeam[i].getBudget()
             + " Rating: " + myTeam[i].getRate(totalGA) + " stars");
         }
-        
+
 
         // Player report
         System.out.println();
