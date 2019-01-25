@@ -1,49 +1,57 @@
 package ca.prog1400;
 import java.util.*;
-import java.text.*;
 
 public class Team {
 
-    String name;
-    double budget;
-//    int goals;
-//    int assistant;
-    int total;
-    int[] goals = new int[3];
-    int[] assists = new int[3];
-    Team[] teamName = new Team[3];
-//    String star;
+    String teamName;
+    int goalsTotalInOneTeam;
+    int assisTotalInOneTeam;
+    String getBudget;
 
-    public Team (String teamName) {
+    public Team (String teamName) {   // make a constructor
 
-        this.name = teamName;
+        this.teamName = teamName;
     }
 
     public String getName() {
-        return this.name;
+        return this.teamName;
     }
-    public String getBudget(){
+
+    public void setGoalsTotalInOneTeam(int goalsTotalInOneTeam){
+        this.goalsTotalInOneTeam = goalsTotalInOneTeam;
+    }
+
+    public int getGoalsTotalInOneTeam() {
+        return this.goalsTotalInOneTeam;
+    }
+
+    public void setAssisTotalInOneTeam(int assisTotalInOneTeam) {
+        this.assisTotalInOneTeam = assisTotalInOneTeam;
+    }
+
+    public int getAssisTotalInOneTeam() {
+        return this.assisTotalInOneTeam;
+    }
+
+    // method to getting budget for each team
+    public String getBudget() {
+
         double max=100000;
         double min=0;
         Random random = new Random();
-        //DecimalFormat df = new DecimalFormat("0.00");
-
 
         double budget = random.nextDouble()*(max-min+1) + min;
-        String budgetDecimal = String.format("%.2f",budget);
-        return budgetDecimal;
+        return String.format("%.2f",budget);
+
     }
 
-//    public int setTotalGoals(int totalGoals) {
-//        this.totalGoals = totalGoals;
-//    }
-
+    // this method is to give how may stars according to total number.
     public String getRate(int total) {
 
         if (total > 20) {
             return "***";
         }
-        else if (total <= 20 && total >=10){
+        else if (total >=10){
             return  "**";
         }
         else if (total > 0){
@@ -55,15 +63,21 @@ public class Team {
 
     }
 
-    public void outputTeamReport(int[] goals, int[] assists,Team[] teamName) {
-        for (int i = 0; i < teamName.length; i++) {
-            int totalGA = goals[i] + assists[i];
-            System.out.println(teamName[i].name + ": "
-                    + " G - " + goals[i]
-                    + " A - " + assists[i]
-                    + " Total - " + totalGA
-                    + " Budget - $" + teamName[i].getBudget()
-                    + " Rating: " + teamName[i].getRate(totalGA) + " stars");
+    // output a report of team information
+    public void outputTeamReport(Team[] myTeam) {
+
+        for (int i = 0; i < myTeam.length; i++) {
+
+            int totalGA = myTeam[i].getGoalsTotalInOneTeam() + myTeam[i].getAssisTotalInOneTeam();
+
+            System.out.println(myTeam[i].teamName + ": "
+                    + " G - " + myTeam[i].getGoalsTotalInOneTeam()
+                    + "  A - " + myTeam[i].getAssisTotalInOneTeam()
+                    + "  Total - " + totalGA
+                    + "  Budget - $" + myTeam[i].getBudget()
+                    + "  Rating: " + myTeam[i].getRate(totalGA) + " stars");
         }
+
     }
+
 }

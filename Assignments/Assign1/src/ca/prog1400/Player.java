@@ -6,47 +6,49 @@ public class Player {
     String name;
     int goal;
     int assist;
-    public static int totalGoals;
-    public static int totalAssist;
+    String teamName;
+    int totalGoalsAndAssist;
 
+    public void setTeamName (String teamName) {
+        this.teamName = teamName;
+    }
 
+    public String getTeamName(){
+        return this.teamName;
+    }
 
+    // Make a constructor
     public Player(String playerName, int playerGoal, int playerAssistant) {
         this.name = playerName;
         this.goal = playerGoal;
         this.assist = playerAssistant;
-//        Player.totalGoals += playerGoal;
-//        Player.totalAssist += playerAssistant;
+
     }
 
+
+    // Add the goals and assists
 
     public int getTotalGoalsAndAssist() {
 
         return this.assist + this.goal;
     }
 
-//    public static int getTotalAssist() {
-//        return Player.totalAssist;
-//    }
+    // make a output report of players
+    public void outputPlayerInfo(Player[][] myPlayer) {
 
-   // public int[] getGrade() {
-//        //return GradeConverter;
-//
-//        Scanner scanner = new Scanner(System.in);
-//
-//        for (int i = 0; i < 3; i++) {
-//
-//
-//            System.out.println("Please input your grade: ");
-//            goal[i] = scanner.nextInt();
-//            System.out.println("Please input your grade: ");
-//            assistant[i] = scanner.nextInt();
-//
-//            //  total.prototype.push.apply(goal,assistant);
-//
-//        }
-//
-//        return goal;
-//
-//    }
+        for (int i = 0; i < myPlayer.length; i++) {
+
+            for (int j = 0; j < myPlayer[i].length; j++) {
+                System.out.println(myPlayer[i][j].teamName);
+                System.out.println(myPlayer[i][j].name +": "
+                        + " G - " + myPlayer[i][j].goal
+                        + "  A - " + myPlayer[i][j].assist
+                        + "  Total - " + myPlayer[i][j].getTotalGoalsAndAssist());
+
+            }
+
+        }
+    }
+
+
 }
