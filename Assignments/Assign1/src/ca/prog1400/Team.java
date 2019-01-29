@@ -6,7 +6,6 @@ public class Team {
     String teamName;
     int goalsTotalInOneTeam;
     int assisTotalInOneTeam;
-    String getBudget;
 
     public Team (String teamName) {   // make a constructor
 

@@ -7,7 +7,7 @@ public class Player {
     int goal;
     int assist;
     String teamName;
-    int totalGoalsAndAssist;
+
 
     public void setTeamName (String teamName) {
         this.teamName = teamName;
