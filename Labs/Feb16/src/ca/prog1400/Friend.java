@@ -22,5 +22,14 @@ public class Friend extends Person {
         return friendDetails;
     }
 
+    @Override
+    public void goToParty() {
+        System.out.println("Hello");
+    }
 
+    @Override
+    public String getFullName() {
+
+        return "My full name is " + super.getFullName();
+    }
 }

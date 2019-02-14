@@ -13,6 +13,7 @@ public class Main {
         JOptionPane.showMessageDialog(null,
                 message1);
 
+        // new arrayList
         ArrayList<Friend> friends = new ArrayList<>();
         int val;
         boolean valInvitedGuest = true;
@@ -48,12 +49,15 @@ public class Main {
                     "Enter another guest?","Party Picker",JOptionPane.YES_NO_OPTION);
 
         }while(val == 0);
+        //} while (JOptionPane.showConfirmDialog(null,
+        //                    "Enter another guest?","Party Picker",JOptionPane.YES_NO_OPTION) == 0)
 
         String output = "";
 
         for (Friend currentValue:friends) {
 
             output += currentValue.toString() + "\n";
+            //output += currentValue + "\n";
 
         }
 
@@ -61,5 +65,6 @@ public class Main {
                 "Guests:\n\n" + output);
 
 
+        //TODO: I nedd to make this class
     }
 }
