@@ -16,4 +16,12 @@ public class Person {
     public String getAddress() {
         return address;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }
