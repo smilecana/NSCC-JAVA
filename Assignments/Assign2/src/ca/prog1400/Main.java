@@ -18,7 +18,7 @@ public class Main {
 
         // Input information
         while (valChoose != 2) {
-            // choose student or staff
+            // choose student or staff or finished
             valChoose = JOptionPane.showOptionDialog(null,
                     "Select Student or Staff.",
                     "Accounting App",
