@@ -3,18 +3,18 @@ package ca.prog1400;
 public class Student extends Person {
     private int year;
     private int numStudent;
+    private double yearFee;
 
     // constructor
-    public Student(String name, String address, int year) {
+    public Student(String name, String address, int year,double yearFee) {
         super(name,address);
         this.year = year;
+        this.yearFee = yearFee;
     }
 
-    // get fee
-    public double yearFee() {
-
-        return 3000+this.year*100 - 100;
-
+    //get yearFee
+    public double getYearFee() {
+        return yearFee;
     }
 
     // get number of student
@@ -30,6 +30,6 @@ public class Student extends Person {
     public String toString() {
 
         return String.format("%d. name = %s, address = %s, year = %d, fee = $%.2f",
-                this.getNumStudent(), this.getName(),this.getAddress(),this.year, this.yearFee());
+                this.getNumStudent(), this.getName(),this.getAddress(),this.year, this.yearFee);
     }
 }

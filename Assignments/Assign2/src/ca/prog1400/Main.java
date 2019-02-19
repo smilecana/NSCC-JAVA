@@ -33,8 +33,9 @@ public class Main {
                 int year = isNumeric(valChoose);
                 String name = isBlank("Enter Student Name");
                 String address = isBlank("Enter Student Address");
+                double yearFee = 3000 + year*100 - 100;
 
-                Student eachStudent = new Student(name, address,year);
+                Student eachStudent = new Student(name, address,year,yearFee);
                 eachStudent.setNumStudent(numStudent);
                 students.add(eachStudent);
 
@@ -46,8 +47,10 @@ public class Main {
                 String name = isBlank("Enter Staff Name");
                 String address = isBlank("Enter Staff Address");
                 int year = isNumeric(valChoose);
+                double yearSalary = 50000 + year * 500;
 
-                Staff eachStaff = new Staff(name, address, year);
+
+                Staff eachStaff = new Staff(name, address, year,yearSalary);
                 eachStaff.setNumStaff(numStaff);
                 staffs.add(eachStaff);
 
@@ -65,7 +68,7 @@ public class Main {
         for (Student currentValue:students) {
 
             output += currentValue.toString() + "\n";
-            sumFee += currentValue.yearFee();
+            sumFee += currentValue.getYearFee();
 
         }
 
@@ -73,7 +76,7 @@ public class Main {
         for (Staff currentValue:staffs){
 
             output += currentValue.toString() + "\n";
-            sumPay += currentValue.yearSalary();
+            sumPay += currentValue.getYearSalary();
         }
 
         output += String.format("\n\nResult:\nOutgoing: $%.2f\nIncoming: $%.2f\nTotal: $%.2f",
@@ -115,13 +118,13 @@ public class Main {
 
                 }
                 else if (!isNumericStudent(str)) {
-                    JOptionPane.showMessageDialog(null,"Please enter a number");
+                    JOptionPane.showMessageDialog(null,"Please enter a number(1-4)");
                 }
                 str = userInput("Enter Student Year (1-4)");
             }
         }
         else if (type == 1) {
-             str = userInput("Enter staff year of service (1-30)");
+             str = userInput("Enter staff year of service (1-29)");
 
             while(!isNumericStaff(str)) {
                 if (str == null || str.equals("")) {
@@ -129,9 +132,9 @@ public class Main {
 
                 }
                 else if (!isNumericStaff(str)) {
-                    JOptionPane.showMessageDialog(null,"Please enter a number");
+                    JOptionPane.showMessageDialog(null,"Please enter a number(1-29)");
                 }
-                str = userInput("Enter staff year of service (1-30)");
+                str = userInput("Enter staff year of service (1-29)");
             }
         }
 
