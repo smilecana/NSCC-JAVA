@@ -33,9 +33,8 @@ public class Main {
                 int year = isNumeric(valChoose);
                 String name = isBlank("Enter Student Name");
                 String address = isBlank("Enter Student Address");
-                double yearFee = 3000 + year*100 - 100;
 
-                Student eachStudent = new Student(name, address,year,yearFee);
+                Student eachStudent = new Student(name, address,year);
                 eachStudent.setNumStudent(numStudent);
                 students.add(eachStudent);
 
@@ -47,10 +46,8 @@ public class Main {
                 String name = isBlank("Enter Staff Name");
                 String address = isBlank("Enter Staff Address");
                 int year = isNumeric(valChoose);
-                double yearSalary = 50000 + year * 500;
 
-
-                Staff eachStaff = new Staff(name, address, year,yearSalary);
+                Staff eachStaff = new Staff(name, address, year);
                 eachStaff.setNumStaff(numStaff);
                 staffs.add(eachStaff);
 
@@ -61,26 +58,23 @@ public class Main {
         }
 
         // output the report
-        double sumFee = 0;
-        double sumPay = 0;
+        double sumFee = students.get(0).getTotalIncoming(students);
+        double sumPay = staffs.get(0).getTotalOutgoing(staffs);
 
         String output = "Students [Total: " + students.size() + "]\n";
         for (Student currentValue:students) {
 
             output += currentValue.toString() + "\n";
-            sumFee += currentValue.getYearFee();
-
         }
 
         output += "Staffs [Total: " + staffs.size() + "]\n";
         for (Staff currentValue:staffs){
 
             output += currentValue.toString() + "\n";
-            sumPay += currentValue.getYearSalary();
         }
 
         output += String.format("\n\nResult:\nOutgoing: $%.2f\nIncoming: $%.2f\nTotal: $%.2f",
-                sumPay/26,sumFee/2,sumFee/2-sumPay/26);
+                sumPay,sumFee,sumFee-sumPay);
 
         JOptionPane.showMessageDialog(null, output);
 

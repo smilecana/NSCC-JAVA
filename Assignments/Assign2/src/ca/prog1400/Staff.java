@@ -1,21 +1,20 @@
 package ca.prog1400;
 
+import java.util.ArrayList;
+
 public class Staff extends Person{
     private int yearService;
     private int numStaff;
-    private double yearSalary;
+    private double yearSalary = 50000;
+    private double yearIncrease = 500;
 
     // constructor
-    public Staff(String name, String address, int yearService,double yearSalary) {
+    public Staff(String name, String address, int yearService) {
         super(name,address);
         this.yearService = yearService;
-        this.yearSalary = yearSalary;
+        this.yearSalary += this.yearService * this.yearIncrease;
     }
 
-    // get the salary
-    public double getYearSalary() {
-        return yearSalary;
-    }
 
     // get the number of staff
     public int getNumStaff() {
@@ -25,6 +24,15 @@ public class Staff extends Person{
     //set the number of staff
     public void setNumStaff(int numStaff) {
         this.numStaff = numStaff;
+    }
+
+    // calculate the total incoming
+    public double getTotalOutgoing(ArrayList<Staff> staffSalary) {
+        double totalSalary = 0;
+        for (Staff element:staffSalary) {
+            totalSalary += element.yearSalary;
+        }
+        return totalSalary/26;
     }
 
     public String toString() {
