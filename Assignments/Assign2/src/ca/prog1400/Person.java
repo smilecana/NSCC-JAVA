@@ -1,6 +1,6 @@
 package ca.prog1400;
 
-public class Person {
+public abstract class Person {
     private String name;
     private String address;
 
@@ -13,18 +13,14 @@ public class Person {
     // get the name
     public String getName() {
         return name;
-    }
+    };
+
 
     // get the address
+
     public String getAddress() {
         return address;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "name= '" + name + '\'' +
-                ", address= '" + address  + '\'' +
-                '}';
-    }
+
 }

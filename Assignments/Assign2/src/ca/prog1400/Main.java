@@ -56,27 +56,31 @@ public class Main {
                 valChoose = 2;
             }
         }
-
+//        double sumFee = 0;
+//        double sumPay = 0;
         // output the report
-        double sumFee = students.get(0).getTotalIncoming(students);
-        double sumPay = staffs.get(0).getTotalOutgoing(staffs);
+//        if(students.size() != 0 || staffs.size() !=0) {
+            double sumFee = Student.getTotalIncoming(students);
+            double sumPay = Staff.getTotalOutgoing(staffs);
+//
+//        }
+            String output = "Students [Total: " + students.size() + "]\n";
+            for (Student currentValue : students) {
 
-        String output = "Students [Total: " + students.size() + "]\n";
-        for (Student currentValue:students) {
+                output += currentValue.toString() + "\n";
+            }
 
-            output += currentValue.toString() + "\n";
-        }
+            output += "Staffs [Total: " + staffs.size() + "]\n";
+            for (Staff currentValue : staffs) {
 
-        output += "Staffs [Total: " + staffs.size() + "]\n";
-        for (Staff currentValue:staffs){
+                output += currentValue.toString() + "\n";
+            }
 
-            output += currentValue.toString() + "\n";
-        }
+            output += String.format("\n\nResult:\nOutgoing: $%.2f\nIncoming: $%.2f\nTotal: $%.2f",
+                    sumPay, sumFee, sumFee - sumPay);
 
-        output += String.format("\n\nResult:\nOutgoing: $%.2f\nIncoming: $%.2f\nTotal: $%.2f",
-                sumPay,sumFee,sumFee-sumPay);
+            JOptionPane.showMessageDialog(null, output);
 
-        JOptionPane.showMessageDialog(null, output);
 
     }
     // method: input variable
