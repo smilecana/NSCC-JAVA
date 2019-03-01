@@ -10,7 +10,7 @@ public class Main {
             public void run() {
                 try {
                     // Here's where you create and make your frame visible
-                    SwingPanel frame = new SwingPanel();
+                    Calculator frame = new Calculator();
                     frame.setVisible(true);
                 }
                 catch (Exception e) {
@@ -19,21 +19,6 @@ public class Main {
             }
         });
 
-/*
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    // Here's where you create and
-                    // make your frame visible
-                    Lab9Frame frame = new Lab9Frame();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-*/
 
     }
-
 }
