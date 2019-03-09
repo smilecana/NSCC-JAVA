@@ -1,15 +1,21 @@
 package ca.prog1400.UI;
 
+import ca.prog1400.model.*;
+
 import javax.swing.*;
 
 public class MainFrame extends JFrame {
 
-//    public static FirstPage getPage1;
-//    public static CharSelection getPage2;
-//    public static Battle getPage3;
     private static FirstPage page1;
     private static CharSelection page2;
     private static Battle page3;
+    private static Warrior warrior;
+    private static Wizard wizard;
+    private static Cleric cleric;
+    private static Dagger dagger;
+    private static Sword sword;
+    private static Hammer hammer;
+
 
     public MainFrame() {
         setTitle("DND Game");
@@ -29,6 +35,16 @@ public class MainFrame extends JFrame {
 
         page2.setVisible(false);
         page3.setVisible(false);
+
+        String name = CharSelection.getSetSelectedPlayerName();
+
+        warrior = new Warrior(name);
+        wizard = new Wizard(name);
+        cleric = new Cleric(name);
+
+        dagger = new Dagger();
+        sword = new Sword();
+        hammer = new Hammer();
 
     }
 
@@ -55,4 +71,30 @@ public class MainFrame extends JFrame {
     public static void setPage3(Battle page3) {
         MainFrame.page3 = page3;
     }
+
+    public static Warrior getWarrior() {
+        return warrior;
+    }
+
+    public static Wizard getWizard() {
+        return wizard;
+    }
+
+    public static Cleric getCleric() {
+        return cleric;
+    }
+
+    public static Dagger getDagger() {
+        return dagger;
+    }
+
+    public static Sword getSword() {
+        return sword;
+    }
+
+    public static Hammer getHammer() {
+        return hammer;
+    }
+
+
 }

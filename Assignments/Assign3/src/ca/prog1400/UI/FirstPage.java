@@ -14,14 +14,14 @@ public class FirstPage extends JPanel {
 
             setSize(600, 600);    //Using separate setSize and setLocation
             setLocation(0,0);
-            setBackground(new Color(255,255,0));
+            setBackground(new Color(98,186,96));
             setLayout(null);
 
             // Main page Title
             JLabel titleLabel = new JLabel("Dragons and Dungeons");
             titleLabel.setBounds(150, 50, 400, 50);
-            titleLabel.setFont(new Font("Arial",Font.BOLD, 24));
-            titleLabel.setForeground(new Color(0,0,0));
+            titleLabel.setFont(new Font("Old English Text MT",Font.BOLD, 32));
+//            titleLabel.setForeground(new Color(0,0,0));
             add(titleLabel);
 
             // add image
@@ -36,7 +36,7 @@ public class FirstPage extends JPanel {
             //add a button
             StartButton = new JButton("Build a Character");
             StartButton.setBounds(200, 500, 200, 50);
-            StartButton.setFont(new Font("Arial",Font.BOLD, 20));
+            StartButton.setFont(new Font("Old English Text MT",Font.BOLD, 20));
             StartButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
