@@ -120,6 +120,7 @@ public class CharSelection extends JPanel {
 
         textHit = new JTextField();
         textHit.setBounds(480,150,70,25);
+        textHit.setEnabled(false);
         add(textHit);
 
         labelDefense = new JLabel("Defense");
@@ -129,7 +130,9 @@ public class CharSelection extends JPanel {
 
         textDefense = new JTextField();
         textDefense.setBounds(480,175,70,25);
+        textDefense.setEnabled(false);
         add(textDefense);
+
 
         labelAgility = new JLabel("Agility");
         labelAgility.setBounds(330, 200, 100, 25);
@@ -138,6 +141,7 @@ public class CharSelection extends JPanel {
 
         textAgility = new JTextField();
         textAgility.setBounds(480,200,70,25);
+        textAgility.setEnabled(false);
         add(textAgility);
 
         labelBase = new JLabel("Base Attack");
@@ -147,6 +151,7 @@ public class CharSelection extends JPanel {
 
         textBase = new JTextField();
         textBase.setBounds(480,225,70,25);
+        textBase.setEnabled(false);
         add(textBase);
 
 
@@ -217,6 +222,7 @@ public class CharSelection extends JPanel {
 
         textAttack = new JTextField();
         textAttack.setBounds(480,390,70,25);
+        textAttack.setEnabled(false);
         add(textAttack);
 
 
@@ -227,6 +233,7 @@ public class CharSelection extends JPanel {
 
         textWeight = new JTextField();
         textWeight.setBounds(480,420,70,25);
+        textWeight.setEnabled(false);
         add(textWeight);
 
 

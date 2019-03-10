@@ -1,7 +1,5 @@
 package ca.prog1400.model;
 
-import java.util.Random;
-
 public class Character {
 
     private int hitPoint;

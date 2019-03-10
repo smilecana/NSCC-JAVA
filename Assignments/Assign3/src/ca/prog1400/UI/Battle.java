@@ -105,7 +105,6 @@ public class Battle extends JPanel {
         add(againButton);
 
     }
-//    public disWi;
 
     public static void disPlayer() {
 
@@ -143,21 +142,21 @@ public class Battle extends JPanel {
 
         String result = "Player: " + CharSelection.getSelectedPlayerName() + "\n---------------------------";
         result += "\nClass: " + CharSelection.getSelectedCharater();
-        result += "\nHP: " + MainFrame.getPlayer().getHitPoint() + " Defense: " + MainFrame.getPlayer().getDefense() +
-                " Agility: " + MainFrame.getPlayer().getAgility() + " Base Attack: " + MainFrame.getPlayer().getBaseAttack();
+        result += "\nHP: " + MainFrame.getPlayer().getHitPoint() + "        Defense: " + MainFrame.getPlayer().getDefense() +
+                "      Agility: " + MainFrame.getPlayer().getAgility() + "       Base Attack: " + MainFrame.getPlayer().getBaseAttack();
 
 
         int selectedIndex = CharSelection.getSelectedWeaponIndex();
-        result += "\nWeapon: " + MainFrame.getWeapons().get(selectedIndex).getType() + "              "+
-                "Weight: " + MainFrame.getWeapons().get(selectedIndex).getWeight() +
-                "Attack Mod: " + MainFrame.getWeapons().get(selectedIndex).getAttackModifier();
+        result += "\nWeapon: " + MainFrame.getWeapons().get(selectedIndex).getType() +
+                "                   Weight: " + MainFrame.getWeapons().get(selectedIndex).getWeight() +
+                "       Attack Mod: " + MainFrame.getWeapons().get(selectedIndex).getAttackModifier();
 
 
         result += "\n\nMonster: " + MainFrame.getMonsters().get(num).getType() + "\n---------------------------";
         result += "\nHP: " + MainFrame.getMonsters().get(num).getHitPoint() +
-                "  Defense: " + MainFrame.getMonsters().get(num).getDefense() +
-                "  Agility: " + MainFrame.getMonsters().get(num).getAgility() +
-                "  Base Attack: " + MainFrame.getMonsters().get(num).getBaseAttack();
+                "       Defense: " + MainFrame.getMonsters().get(num).getDefense() +
+                "       Agility: " + MainFrame.getMonsters().get(num).getAgility() +
+                "       Base Attack: " + MainFrame.getMonsters().get(num).getBaseAttack();
 
         textDisplay.setText(result);
 
