@@ -6,7 +6,8 @@ import java.awt.*;
 public class Cleric extends Player {
 
     private ImageIcon clericPic;
-
+    private String type = "Cleric";
+    private boolean isSelected = false;
 
     public Cleric(String playerName) {
         super(playerName);
@@ -23,5 +24,17 @@ public class Cleric extends Player {
     public String toString() {
         return "Clerics are intermediaries between the mortal world and the distant planes of the gods. " +
                 "As varied as the gods they serve, they strive to embody the handiwork of their deities.";
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

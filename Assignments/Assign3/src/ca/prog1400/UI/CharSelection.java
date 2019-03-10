@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.Character;
+import java.util.Random;
 
 public class CharSelection extends JPanel {
 
@@ -61,7 +63,7 @@ public class CharSelection extends JPanel {
         setLayout(null);
 
         addCharacterRadios();
-        addWeapponRadios();
+        addWeaponRadios();
 
         // setting player name
         title = new JLabel("Character Generator");
@@ -77,13 +79,6 @@ public class CharSelection extends JPanel {
 
         nameText = new JTextField();
         nameText.setBounds(200,60,150,40);
-        nameText.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                MainFrame.setSelectedPlayerName(nameText.getText());
-                setSetSelectedPlayerName(nameText.getText());
-            }
-        });
         add(nameText);
 
 
@@ -157,14 +152,25 @@ public class CharSelection extends JPanel {
         rbReroll.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int numHit = MainFrame.getWarrior().getHitPoint();
+                Random random = new Random();
+                int numHit = random.nextInt(200);
                 textHit.setText(Integer.toString(numHit));
-                int numDefense = MainFrame.getWarrior().getDefense();
+                MainFrame.getPlayer().setHitPoint(numHit);
+
+
+                int numDefense = random.nextInt(200);
                 textDefense.setText(Integer.toString(numDefense));
-                int numAgility = MainFrame.getWarrior().getAgility();
+                MainFrame.getPlayer().setDefense(numDefense);
+
+                int numAgility =random.nextInt(200);
                 textAgility.setText(Integer.toString(numAgility));
-                int numBase = MainFrame.getWarrior().getBaseAttack();
+                MainFrame.getPlayer().setAgility(numAgility);
+
+                int numBase = random.nextInt(200);
                 textBase.setText(Integer.toString(numBase));
+                MainFrame.getPlayer().setBaseAttack(numBase);
+
+
             }
         });
         add(rbReroll);
@@ -226,6 +232,8 @@ public class CharSelection extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 MainFrame.getPage3().setVisible(true);
                 setVisible(false);
+                setSetSelectedPlayerName(nameText.getText());
+                Battle.disPlayer();
             }
         });
         add(buttonStartBattle);
@@ -248,6 +256,8 @@ public class CharSelection extends JPanel {
                 Warrior wa = MainFrame.getWarrior();
                 swapImages(wa.getWarriorPic());
                 getTextType().setText(wa.toString());
+                selectedCharater = "Warrior";
+
             }
         });
         add(rbWarrior);
@@ -261,6 +271,7 @@ public class CharSelection extends JPanel {
                 Wizard wi = MainFrame.getWizard();
                 swapImages(wi.getWizardPic());
                 getTextType().setText(wi.toString());
+                setSelectedCharater("Wizard");
             }
         });
         add(rbWizard);
@@ -274,6 +285,7 @@ public class CharSelection extends JPanel {
                 Cleric cl = MainFrame.getCleric();
                 swapImages(cl.getClericPic());
                 getTextType().setText(cl.toString());
+                selectedCharater = "Cleric";
             }
         });
         add(rbCleric);
@@ -284,7 +296,7 @@ public class CharSelection extends JPanel {
         groupType.add(rbCleric);
     }
 
-    public void addWeapponRadios (){
+    public void addWeaponRadios (){
         rbDagger = new JRadioButton("Dagger");
         rbDagger.setBounds(30,380,100,30);
         rbDagger.setFont(choiceFont);
@@ -377,4 +389,11 @@ public class CharSelection extends JPanel {
     }
 
 
+    public static String getSelectedCharater() {
+        return selectedCharater;
+    }
+
+    public static void setSelectedCharater(String selectedCharater) {
+        CharSelection.selectedCharater = selectedCharater;
+    }
 }

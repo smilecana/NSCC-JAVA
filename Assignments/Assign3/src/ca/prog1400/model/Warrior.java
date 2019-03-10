@@ -7,6 +7,8 @@ public class Warrior extends Player{
 
 
     private ImageIcon warriorPic;
+    private String type = "Warrior";
+    private boolean isSelected = false;
 
     public Warrior(String playerName) {
         super(playerName);
@@ -22,5 +24,17 @@ public class Warrior extends Player{
     public String toString() {
         return "They all share an unparalleled mastery with weapons and armor," +
                 " and a thorough knowledge of the skills of combat.";
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

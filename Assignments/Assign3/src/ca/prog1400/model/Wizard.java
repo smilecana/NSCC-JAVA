@@ -6,7 +6,8 @@ import java.awt.*;
 public class Wizard extends Player{
 
     private ImageIcon wizardPic;
-
+    private String type = "Wizard";
+    private boolean isSelected = false;
 
     public Wizard(String playerName) {
         super(playerName);
@@ -22,5 +23,17 @@ public class Wizard extends Player{
     public String toString() {
         return "Drawing on the subtle weave of magic that permeates the cosmos," +
                 " wizards cast spells of explosive fire, arcing lightning, subtle deception, and brute-force mind control.";
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

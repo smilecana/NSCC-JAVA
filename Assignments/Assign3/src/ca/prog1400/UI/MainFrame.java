@@ -15,6 +15,7 @@ public class MainFrame extends JFrame {
     private static Dagger dagger;
     private static Sword sword;
     private static Hammer hammer;
+    private static Player player;
 
 
     public MainFrame() {
@@ -45,6 +46,9 @@ public class MainFrame extends JFrame {
         dagger = new Dagger();
         sword = new Sword();
         hammer = new Hammer();
+
+        player = new Player(name);
+
 
     }
 
@@ -96,5 +100,7 @@ public class MainFrame extends JFrame {
         return hammer;
     }
 
-
+    public static Player getPlayer() {
+        return player;
+    }
 }
