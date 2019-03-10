@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.Character;
 import java.util.Random;
 
 public class CharSelection extends JPanel {
@@ -52,7 +51,12 @@ public class CharSelection extends JPanel {
 
     private static String selectedPlayerName;
     private static String selectedCharater;
-    private static String selectedWeapon;
+    private static int selectedWeaponIndex;
+    private  ButtonGroup groupType;
+    private  ButtonGroup groupWeapon;
+
+    Random random = new Random();
+
 
 
     public CharSelection() {
@@ -152,25 +156,27 @@ public class CharSelection extends JPanel {
         rbReroll.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Random random = new Random();
-                int numHit = random.nextInt(200);
-                textHit.setText(Integer.toString(numHit));
-                MainFrame.getPlayer().setHitPoint(numHit);
+
+                if(groupType.getSelection()!=null) {
+
+                    int numHit = random.nextInt(200);
+                    textHit.setText(Integer.toString(numHit));
+                    MainFrame.getPlayer().setHitPoint(numHit);
 
 
-                int numDefense = random.nextInt(200);
-                textDefense.setText(Integer.toString(numDefense));
-                MainFrame.getPlayer().setDefense(numDefense);
+                    int numDefense = random.nextInt(200);
+                    textDefense.setText(Integer.toString(numDefense));
+                    MainFrame.getPlayer().setDefense(numDefense);
 
-                int numAgility =random.nextInt(200);
-                textAgility.setText(Integer.toString(numAgility));
-                MainFrame.getPlayer().setAgility(numAgility);
+                    int numAgility = random.nextInt(200);
+                    textAgility.setText(Integer.toString(numAgility));
+                    MainFrame.getPlayer().setAgility(numAgility);
 
-                int numBase = random.nextInt(200);
-                textBase.setText(Integer.toString(numBase));
-                MainFrame.getPlayer().setBaseAttack(numBase);
+                    int numBase = random.nextInt(200);
+                    textBase.setText(Integer.toString(numBase));
+                    MainFrame.getPlayer().setBaseAttack(numBase);
 
-
+                }
             }
         });
         add(rbReroll);
@@ -230,10 +236,16 @@ public class CharSelection extends JPanel {
         buttonStartBattle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MainFrame.getPage3().setVisible(true);
-                setVisible(false);
-                setSetSelectedPlayerName(nameText.getText());
-                Battle.disPlayer();
+
+                if(groupType.getSelection()!=null && groupWeapon.getSelection()!=null && !textDefense.getText().isEmpty()) {
+
+//                    System.out.println(textAgility.getText());
+                    MainFrame.getPage3().setVisible(true);
+
+                    setVisible(false);
+                    setSelectedPlayerName(nameText.getText());
+                    Battle.disPlayer();
+                }
             }
         });
         add(buttonStartBattle);
@@ -245,7 +257,6 @@ public class CharSelection extends JPanel {
     public void swapImagesWeapon(ImageIcon newimage2) {imageWeapon.setIcon(newimage2);}
 
     public void addCharacterRadios() {
-
 
         rbWarrior = new JRadioButton("Warrior");
         rbWarrior.setBounds(30,150,100,30);
@@ -290,24 +301,27 @@ public class CharSelection extends JPanel {
         });
         add(rbCleric);
 
-        ButtonGroup groupType = new ButtonGroup();
+        groupType = new ButtonGroup();
         groupType.add(rbWarrior);
         groupType.add(rbWizard);
         groupType.add(rbCleric);
     }
 
     public void addWeaponRadios (){
+
         rbDagger = new JRadioButton("Dagger");
         rbDagger.setBounds(30,380,100,30);
         rbDagger.setFont(choiceFont);
         rbDagger.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Dagger da = MainFrame.getDagger();
-                swapImagesWeapon(da.getDaggerPic());
-                getTextWeapon().setText(da.toString());
+
+                Weapan da = MainFrame.getWeapons().get(0);
+                swapImagesWeapon(da.getWeaponPic());
+                getTextWeapon().setText(da.getDescription());
                 getTextAttack().setText(da.getAttackModifier());
                 getTextWeight().setText(da.getWeight());
+                setSelectedWeaponIndex(0);
             }
         });
         add(rbDagger);
@@ -318,11 +332,13 @@ public class CharSelection extends JPanel {
         rbSword.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Sword sw = MainFrame.getSword();
-                swapImagesWeapon(sw.getSwordPic());
-                getTextWeapon().setText(sw.toString());
+                Weapan sw = MainFrame.getWeapons().get(1);
+                swapImagesWeapon(sw.getWeaponPic());
+                getTextWeapon().setText(sw.getDescription());
                 getTextAttack().setText(sw.getAttackModifier());
                 getTextWeight().setText(sw.getWeight());
+                setSelectedWeaponIndex(1);
+
             }
         });
         add(rbSword);
@@ -333,16 +349,18 @@ public class CharSelection extends JPanel {
         rbHammer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Hammer ha = MainFrame.getHammer();
-                swapImagesWeapon(ha.getHammerPic());
-                getTextWeapon().setText(ha.toString());
+                Weapan ha = MainFrame.getWeapons().get(2);
+                swapImagesWeapon(ha.getWeaponPic());
+                getTextWeapon().setText(ha.getDescription());
                 getTextAttack().setText(ha.getAttackModifier());
                 getTextWeight().setText(ha.getWeight());
+                setSelectedWeaponIndex(2);
+
             }
         });
         add(rbHammer);
 
-        ButtonGroup groupWeapon = new ButtonGroup();
+        groupWeapon = new ButtonGroup();
         groupWeapon.add(rbDagger);
         groupWeapon.add(rbSword);
         groupWeapon.add(rbHammer);
@@ -354,6 +372,60 @@ public class CharSelection extends JPanel {
 
     public JTextArea getTextWeapon() {
         return textWeapon;
+    }
+
+
+    public JTextField getTextAttack() {
+        return textAttack;
+    }
+
+    public JTextField getTextWeight() {
+        return textWeight;
+    }
+
+    public static String getSelectedPlayerName() {
+        return selectedPlayerName;
+    }
+
+    public static void setSelectedPlayerName(String selectedPlayerName) {
+        CharSelection.selectedPlayerName = selectedPlayerName;
+    }
+
+
+    public static String getSelectedCharater() {
+        return selectedCharater;
+    }
+
+    public static void setSelectedCharater(String selectedCharater) {
+        CharSelection.selectedCharater = selectedCharater;
+    }
+
+    public static int getSelectedWeaponIndex() {
+        return selectedWeaponIndex;
+    }
+
+    public static void setSelectedWeaponIndex(int selectedWeaponIndex) {
+        CharSelection.selectedWeaponIndex = selectedWeaponIndex;
+    }
+
+    public ButtonGroup getGroupType() {
+        return groupType;
+    }
+
+    public ButtonGroup getGroupWeapon() {
+        return groupWeapon;
+    }
+
+    public JTextField getNameText() {
+        return nameText;
+    }
+
+    public JLabel getImageWeapon() {
+        return imageWeapon;
+    }
+
+    public JLabel getImageLabel() {
+        return imageLabel;
     }
 
     public JTextField getTextHit() {
@@ -370,30 +442,5 @@ public class CharSelection extends JPanel {
 
     public JTextField getTextBase() {
         return textBase;
-    }
-
-    public JTextField getTextAttack() {
-        return textAttack;
-    }
-
-    public JTextField getTextWeight() {
-        return textWeight;
-    }
-
-    public static String getSetSelectedPlayerName() {
-        return selectedPlayerName;
-    }
-
-    public static void setSetSelectedPlayerName(String setSelectedPlayerName) {
-        CharSelection.selectedPlayerName = setSelectedPlayerName;
-    }
-
-
-    public static String getSelectedCharater() {
-        return selectedCharater;
-    }
-
-    public static void setSelectedCharater(String selectedCharater) {
-        CharSelection.selectedCharater = selectedCharater;
     }
 }

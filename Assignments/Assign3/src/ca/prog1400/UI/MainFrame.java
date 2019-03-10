@@ -3,6 +3,9 @@ package ca.prog1400.UI;
 import ca.prog1400.model.*;
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class MainFrame extends JFrame {
 
@@ -12,10 +15,11 @@ public class MainFrame extends JFrame {
     private static Warrior warrior;
     private static Wizard wizard;
     private static Cleric cleric;
-    private static Dagger dagger;
-    private static Sword sword;
-    private static Hammer hammer;
+
     private static Player player;
+    private static ArrayList<Weapan> weapons = new ArrayList<>();
+    private static ArrayList<Monster> monsters = new ArrayList<>();
+
 
 
     public MainFrame() {
@@ -37,17 +41,55 @@ public class MainFrame extends JFrame {
         page2.setVisible(false);
         page3.setVisible(false);
 
-        String name = CharSelection.getSetSelectedPlayerName();
+        String name = CharSelection.getSelectedPlayerName();
 
         warrior = new Warrior(name);
         wizard = new Wizard(name);
         cleric = new Cleric(name);
 
-        dagger = new Dagger();
-        sword = new Sword();
-        hammer = new Hammer();
+
+        String daggerDescription = "You get a +2 bonus on Sleight of Hand checks made to conceal a dagger on your body.";
+        ImageIcon daggerIcon = new ImageIcon(getClass().getResource("/images/dagger.jpg"));
+        daggerIcon.setImage(daggerIcon.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT));
+        Weapan dagger = new Weapan("Dagger",daggerIcon,"+2","1",daggerDescription);
+
+        String swordDescription = "When the sword appears, you make a melee spell attack against " +
+                "a target of your choice within 5 feet of the sword. ";
+        ImageIcon swordIcon = new ImageIcon(getClass().getResource("/images/sword.jpg"));
+        swordIcon.setImage(swordIcon.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT));
+        Weapan sword = new Weapan("Sword",swordIcon,"+5","1",swordDescription);
+
+        String hammerDescription = "The Lucerne hammer is a type of polearm with a three pronged hammer, a spiked tip, and a curved pick-like spike. ";
+        ImageIcon hammerIcon = new ImageIcon(getClass().getResource("/images/hammer.jpg"));
+        hammerIcon.setImage(hammerIcon.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT));
+        Weapan hammer = new Weapan("Hammer",hammerIcon,"+6","10",hammerDescription);
+
+        weapons.add(dagger);
+        weapons.add(sword);
+        weapons.add(hammer);
 
         player = new Player(name);
+
+        ImageIcon gazerIcon = new ImageIcon(getClass().getResource("/images/gazer.jpeg"));
+        gazerIcon.setImage(gazerIcon.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT));
+        Monster gazer = new Monster("Gazer",gazerIcon);
+
+        Random num = new Random();
+        gazer.setAgility(num.nextInt(200));
+        gazer.setHitPoint(num.nextInt(200));
+        gazer.setDefense(num.nextInt(200));
+        gazer.setBaseAttack(num.nextInt(200));
+
+        ImageIcon owlbearIcon = new ImageIcon(getClass().getResource("/images/Owlbear.jpeg"));
+        owlbearIcon.setImage(owlbearIcon.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT));
+        Monster owlbear = new Monster("Owlbear",owlbearIcon);
+        owlbear.setHitPoint(num.nextInt(200));
+        owlbear.setAgility(num.nextInt(200));
+        owlbear.setDefense(num.nextInt(200));
+        owlbear.setBaseAttack(num.nextInt(200));
+
+        monsters.add(gazer);
+        monsters.add(owlbear);
 
 
     }
@@ -88,19 +130,16 @@ public class MainFrame extends JFrame {
         return cleric;
     }
 
-    public static Dagger getDagger() {
-        return dagger;
-    }
-
-    public static Sword getSword() {
-        return sword;
-    }
-
-    public static Hammer getHammer() {
-        return hammer;
-    }
 
     public static Player getPlayer() {
         return player;
+    }
+
+    public static ArrayList<Weapan> getWeapons() {
+        return weapons;
+    }
+
+    public static ArrayList<Monster> getMonsters() {
+        return monsters;
     }
 }

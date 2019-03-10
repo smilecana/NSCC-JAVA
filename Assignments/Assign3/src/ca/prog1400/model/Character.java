@@ -10,10 +10,7 @@ public class Character {
     private int baseAttack;
 
     public Character() {
-//        this.hitPoint = random.nextInt(200);
-//        this.defense = random.nextInt(200);
-//        this.agility = random.nextInt(200);
-//        this.baseAttack = random.nextInt(200);
+
     }
 
     public int getHitPoint() {

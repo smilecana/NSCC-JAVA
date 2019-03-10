@@ -7,7 +7,6 @@ public class Wizard extends Player{
 
     private ImageIcon wizardPic;
     private String type = "Wizard";
-    private boolean isSelected = false;
 
     public Wizard(String playerName) {
         super(playerName);
@@ -29,11 +28,5 @@ public class Wizard extends Player{
         return type;
     }
 
-    public boolean isSelected() {
-        return isSelected;
-    }
 
-    public void setSelected(boolean selected) {
-        isSelected = selected;
-    }
 }

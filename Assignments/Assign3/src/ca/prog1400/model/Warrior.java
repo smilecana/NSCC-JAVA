@@ -8,7 +8,6 @@ public class Warrior extends Player{
 
     private ImageIcon warriorPic;
     private String type = "Warrior";
-    private boolean isSelected = false;
 
     public Warrior(String playerName) {
         super(playerName);
@@ -30,11 +29,5 @@ public class Warrior extends Player{
         return type;
     }
 
-    public boolean isSelected() {
-        return isSelected;
-    }
 
-    public void setSelected(boolean selected) {
-        isSelected = selected;
-    }
 }

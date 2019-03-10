@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class Battle extends JPanel {
 
@@ -21,6 +22,8 @@ public class Battle extends JPanel {
 
     private static JLabel playerCha;
     private static JLabel imagePlayer;
+    private static JLabel imageMonster;
+    private static JLabel monsterType;
 
     public Battle() {
 
@@ -52,13 +55,19 @@ public class Battle extends JPanel {
         add(imagePlayer);
 
 
-
-
-
         monster = new JLabel("Monster: ");
         monster.setBounds(350, 100, 150, 50);
         monster.setFont(fontText);
         add(monster);
+
+        monsterType = new JLabel();
+        monsterType.setBounds(470,100,100,50);
+        monsterType.setFont(fontText);
+        add(monsterType);
+
+        imageMonster = new JLabel();
+        imageMonster.setBounds(400, 150, 120, 140);
+        add(imageMonster);
 
         textDisplay = new JTextArea();
         textDisplay.setBounds(50,300,500,200);
@@ -75,6 +84,22 @@ public class Battle extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 MainFrame.getPage2().setVisible(true);
                 setVisible(false);
+//                MainFrame.getPage2().repaint();
+//                MainFrame.getPage2().revalidate();
+                MainFrame.getPage2().getGroupType().clearSelection();
+                MainFrame.getPage2().getGroupWeapon().clearSelection();
+                MainFrame.getPage2().getNameText().setText("");
+                MainFrame.getPage2().getImageLabel().setIcon(null);
+                MainFrame.getPage2().getImageWeapon().setIcon(null);
+                MainFrame.getPage2().getTextType().setText("");
+                MainFrame.getPage2().getTextWeapon().setText("");
+                MainFrame.getPage2().getTextAttack().setText("");
+                MainFrame.getPage2().getTextWeight().setText("");
+                MainFrame.getPage2().getTextAgility().setText("");
+                MainFrame.getPage2().getTextHit().setText("");
+                MainFrame.getPage2().getTextBase().setText("");
+                MainFrame.getPage2().getTextDefense().setText("");
+
             }
         });
         add(againButton);
@@ -84,11 +109,6 @@ public class Battle extends JPanel {
 
     public static void disPlayer() {
 
-        String result = "Player: " + CharSelection.getSetSelectedPlayerName();
-        result += "\n---------------------------";
-        result += "\nClass: " + CharSelection.getSelectedCharater();
-        result += "\nHP: " + MainFrame.getPlayer().getHitPoint() + " Defense: " + MainFrame.getPlayer().getDefense() +
-                " Agility: " + MainFrame.getPlayer().getAgility() + " Base Attack: " + MainFrame.getPlayer().getBaseAttack();
 
         if (CharSelection.getSelectedCharater().equals("Wizard")) {
 
@@ -113,6 +133,31 @@ public class Battle extends JPanel {
             imagePlayer.setIcon(cer.getClericPic());
 
         }
+
+        Random random = new Random();
+        int num = random.nextInt(2);
+        System.out.println(num);
+        monsterType.setText(MainFrame.getMonsters().get(num).getType());
+        imageMonster.setIcon(MainFrame.getMonsters().get(num).getMonsterPic());
+
+
+        String result = "Player: " + CharSelection.getSelectedPlayerName() + "\n---------------------------";
+        result += "\nClass: " + CharSelection.getSelectedCharater();
+        result += "\nHP: " + MainFrame.getPlayer().getHitPoint() + " Defense: " + MainFrame.getPlayer().getDefense() +
+                " Agility: " + MainFrame.getPlayer().getAgility() + " Base Attack: " + MainFrame.getPlayer().getBaseAttack();
+
+
+        int selectedIndex = CharSelection.getSelectedWeaponIndex();
+        result += "\nWeapon: " + MainFrame.getWeapons().get(selectedIndex).getType() + "              "+
+                "Weight: " + MainFrame.getWeapons().get(selectedIndex).getWeight() +
+                "Attack Mod: " + MainFrame.getWeapons().get(selectedIndex).getAttackModifier();
+
+
+        result += "\n\nMonster: " + MainFrame.getMonsters().get(num).getType() + "\n---------------------------";
+        result += "\nHP: " + MainFrame.getMonsters().get(num).getHitPoint() +
+                "  Defense: " + MainFrame.getMonsters().get(num).getDefense() +
+                "  Agility: " + MainFrame.getMonsters().get(num).getAgility() +
+                "  Base Attack: " + MainFrame.getMonsters().get(num).getBaseAttack();
 
         textDisplay.setText(result);
 

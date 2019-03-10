@@ -7,7 +7,6 @@ public class Cleric extends Player {
 
     private ImageIcon clericPic;
     private String type = "Cleric";
-    private boolean isSelected = false;
 
     public Cleric(String playerName) {
         super(playerName);
@@ -30,11 +29,6 @@ public class Cleric extends Player {
         return type;
     }
 
-    public boolean isSelected() {
-        return isSelected;
-    }
 
-    public void setSelected(boolean selected) {
-        isSelected = selected;
-    }
+
 }
