@@ -8,8 +8,8 @@ public class Wizard extends Player{
     private ImageIcon wizardPic;
     private String type = "Wizard";
 
-    public Wizard(String playerName) {
-        super(playerName);
+    public Wizard() {
+        super();
         this.wizardPic = new ImageIcon(getClass().getResource("/images/wizard.jpg"));
         wizardPic.setImage(wizardPic.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT));
     }

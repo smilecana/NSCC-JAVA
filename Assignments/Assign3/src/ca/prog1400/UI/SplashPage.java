@@ -5,10 +5,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FirstPage extends JPanel {
+public class SplashPage extends JPanel {
     private static JButton StartButton;
 
-    public FirstPage() {
+    public SplashPage() {
 
             super();
 
@@ -21,7 +21,6 @@ public class FirstPage extends JPanel {
             JLabel titleLabel = new JLabel("Dragons and Dungeons");
             titleLabel.setBounds(150, 50, 400, 50);
             titleLabel.setFont(new Font("Old English Text MT",Font.BOLD, 32));
-//            titleLabel.setForeground(new Color(0,0,0));
             add(titleLabel);
 
             // add image
@@ -40,7 +39,7 @@ public class FirstPage extends JPanel {
             StartButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    MainFrame.getPage2().setVisible(true);
+                    MainFrame.getCharSelectionPage().setVisible(true);
                     setVisible(false);
                 }
             });
@@ -48,11 +47,4 @@ public class FirstPage extends JPanel {
 
     }
 
-    public JButton getStartButton() {
-        return StartButton;
-    }
-
-    public void setStartButton(JButton startButton) {
-        this.StartButton = startButton;
-    }
 }

@@ -1,9 +1,6 @@
 package ca.prog1400.UI;
 
-import ca.prog1400.model.Cleric;
-import ca.prog1400.model.Player;
-import ca.prog1400.model.Warrior;
-import ca.prog1400.model.Wizard;
+import ca.prog1400.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,9 +10,6 @@ import java.util.Random;
 
 public class Battle extends JPanel {
 
-    private JLabel title;
-    private JLabel player;
-    private JLabel monster;
     private static JTextArea textDisplay;
     private Font fontTitle = new Font("Old English Text MT",Font.BOLD, 35);
     private Font fontText = new Font("Arial",Font.BOLD, 24);
@@ -25,6 +19,11 @@ public class Battle extends JPanel {
     private static JLabel imageMonster;
     private static JLabel monsterType;
 
+    private static String weaponType;
+    private static String weaponWeight;
+    private static String weapongAttack;
+    private static Monster monsterRandom;
+
     public Battle() {
 
         setSize(600, 600);    //Using separate setSize and setLocation
@@ -33,17 +32,15 @@ public class Battle extends JPanel {
 
 
 
-        title = new JLabel("Battle To The Death");
+        JLabel title = new JLabel("Battle To The Death");
         title.setBounds(150, 50, 500, 50);
         title.setFont(fontTitle);
         add(title);
 
-        player = new JLabel("Player: ");
+        JLabel player = new JLabel("Player: ");
         player.setBounds(100, 100, 100, 50);
         player.setFont(fontText);
         add(player);
-
-
 
         playerCha = new JLabel();
         playerCha.setBounds(200,100,100,50);
@@ -55,7 +52,7 @@ public class Battle extends JPanel {
         add(imagePlayer);
 
 
-        monster = new JLabel("Monster: ");
+        JLabel monster = new JLabel("Monster: ");
         monster.setBounds(350, 100, 150, 50);
         monster.setFont(fontText);
         add(monster);
@@ -82,23 +79,22 @@ public class Battle extends JPanel {
         againButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MainFrame.getPage2().setVisible(true);
+                MainFrame.getCharSelectionPage().setVisible(true);
                 setVisible(false);
-//                MainFrame.getPage2().repaint();
-//                MainFrame.getPage2().revalidate();
-                MainFrame.getPage2().getGroupType().clearSelection();
-                MainFrame.getPage2().getGroupWeapon().clearSelection();
-                MainFrame.getPage2().getNameText().setText("");
-                MainFrame.getPage2().getImageLabel().setIcon(null);
-                MainFrame.getPage2().getImageWeapon().setIcon(null);
-                MainFrame.getPage2().getTextType().setText("");
-                MainFrame.getPage2().getTextWeapon().setText("");
-                MainFrame.getPage2().getTextAttack().setText("");
-                MainFrame.getPage2().getTextWeight().setText("");
-                MainFrame.getPage2().getTextAgility().setText("");
-                MainFrame.getPage2().getTextHit().setText("");
-                MainFrame.getPage2().getTextBase().setText("");
-                MainFrame.getPage2().getTextDefense().setText("");
+
+                MainFrame.getCharSelectionPage().getGroupType().clearSelection();
+                MainFrame.getCharSelectionPage().getGroupWeapon().clearSelection();
+                MainFrame.getCharSelectionPage().getNameText().setText("");
+                MainFrame.getCharSelectionPage().getImageLabel().setIcon(null);
+                MainFrame.getCharSelectionPage().getImageWeapon().setIcon(null);
+                MainFrame.getCharSelectionPage().getTextType().setText("");
+                MainFrame.getCharSelectionPage().getTextWeapon().setText("");
+                MainFrame.getCharSelectionPage().getTextAttack().setText("");
+                MainFrame.getCharSelectionPage().getTextWeight().setText("");
+                MainFrame.getCharSelectionPage().getTextAgility().setText("");
+                MainFrame.getCharSelectionPage().getTextHit().setText("");
+                MainFrame.getCharSelectionPage().getTextBase().setText("");
+                MainFrame.getCharSelectionPage().getTextDefense().setText("");
 
             }
         });
@@ -108,7 +104,6 @@ public class Battle extends JPanel {
 
     public static void disPlayer() {
 
-
         if (CharSelection.getSelectedCharater().equals("Wizard")) {
 
 
@@ -116,6 +111,9 @@ public class Battle extends JPanel {
             playerCha.setText(wi.getType());
             imagePlayer.setIcon(wi.getWizardPic());
 
+            weaponType = wi.getWeapon().getType();
+            weaponWeight = wi.getWeapon().getWeight();
+            weapongAttack = wi.getWeapon().getAttackModifier();
 
         }
         else if(CharSelection.getSelectedCharater().equals("Warrior")) {
@@ -124,6 +122,10 @@ public class Battle extends JPanel {
             playerCha.setText(wa.getType());
             imagePlayer.setIcon(wa.getWarriorPic());
 
+            weaponType = wa.getWeapon().getType();
+            weaponWeight = wa.getWeapon().getWeight();
+            weapongAttack = wa.getWeapon().getAttackModifier();
+
         }
         else if(CharSelection.getSelectedCharater().equals("Cleric")) {
 
@@ -131,35 +133,35 @@ public class Battle extends JPanel {
             playerCha.setText(cer.getType());
             imagePlayer.setIcon(cer.getClericPic());
 
+            weaponType = cer.getWeapon().getType();
+            weaponWeight = cer.getWeapon().getWeight();
+            weapongAttack = cer.getWeapon().getAttackModifier();
+
         }
 
         Random random = new Random();
         int num = random.nextInt(2);
+        monsterRandom = MainFrame.getMonsters().get(num);
         System.out.println(num);
-        monsterType.setText(MainFrame.getMonsters().get(num).getType());
-        imageMonster.setIcon(MainFrame.getMonsters().get(num).getMonsterPic());
+        monsterType.setText(monsterRandom.getType());
+        imageMonster.setIcon(monsterRandom.getMonsterPic());
 
 
-        String result = "Player: " + CharSelection.getSelectedPlayerName() + "\n---------------------------";
-        result += "\nClass: " + CharSelection.getSelectedCharater();
-        result += "\nHP: " + MainFrame.getPlayer().getHitPoint() + "        Defense: " + MainFrame.getPlayer().getDefense() +
-                "      Agility: " + MainFrame.getPlayer().getAgility() + "       Base Attack: " + MainFrame.getPlayer().getBaseAttack();
+        String line = "\n---------------------------";
+
+        Player playerDis = MainFrame.getPlayer();
+        String result = "Player: " + playerDis.getPlayerName() + line;
+        result += String.format("\nClass: %s\nHP: %-17sDefense: %-16sAgility: %-16sBase Attack: %-10s",
+                CharSelection.getSelectedCharater(),playerDis.getHitPoint(),playerDis.getDefense(),playerDis.getAgility(),playerDis.getBaseAttack());
+
+        result += String.format("\nWeapon: %-40sWeight: %-16sAttack Mod: %s",weaponType,weaponWeight,weapongAttack);
 
 
-        int selectedIndex = CharSelection.getSelectedWeaponIndex();
-        result += "\nWeapon: " + MainFrame.getWeapons().get(selectedIndex).getType() +
-                "                   Weight: " + MainFrame.getWeapons().get(selectedIndex).getWeight() +
-                "       Attack Mod: " + MainFrame.getWeapons().get(selectedIndex).getAttackModifier();
+        result += "\n\nMonster: " + monsterRandom.getType() + line;
+        result += String.format("\nHP: %-17sDefense: %-17sAgility: %-17sBase Attack: %-17s",
+                monsterRandom.getHitPoint(),monsterRandom.getDefense(),monsterRandom.getAgility(),monsterRandom.getBaseAttack());
 
-
-        result += "\n\nMonster: " + MainFrame.getMonsters().get(num).getType() + "\n---------------------------";
-        result += "\nHP: " + MainFrame.getMonsters().get(num).getHitPoint() +
-                "       Defense: " + MainFrame.getMonsters().get(num).getDefense() +
-                "       Agility: " + MainFrame.getMonsters().get(num).getAgility() +
-                "       Base Attack: " + MainFrame.getMonsters().get(num).getBaseAttack();
-
-        textDisplay.setText(result);
-
+       textDisplay.setText(result);
 
     }
 

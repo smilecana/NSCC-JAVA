@@ -8,8 +8,8 @@ public class Cleric extends Player {
     private ImageIcon clericPic;
     private String type = "Cleric";
 
-    public Cleric(String playerName) {
-        super(playerName);
+    public Cleric() {
+        super();
         this.clericPic = new ImageIcon(getClass().getResource("/images/cleric.jpg"));
         clericPic.setImage(clericPic.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT));
     }

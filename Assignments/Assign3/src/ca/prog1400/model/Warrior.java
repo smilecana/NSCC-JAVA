@@ -9,8 +9,8 @@ public class Warrior extends Player{
     private ImageIcon warriorPic;
     private String type = "Warrior";
 
-    public Warrior(String playerName) {
-        super(playerName);
+    public Warrior() {
+        super();
         this.warriorPic = new ImageIcon(getClass().getResource("/images/warrior.jpg"));
         warriorPic.setImage(warriorPic.getImage().getScaledInstance(90, 100,Image.SCALE_DEFAULT));
     }

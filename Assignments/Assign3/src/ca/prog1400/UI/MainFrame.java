@@ -9,17 +9,18 @@ import java.util.Random;
 
 public class MainFrame extends JFrame {
 
-    private static FirstPage page1;
-    private static CharSelection page2;
-    private static Battle page3;
+    private static CharSelection charSelectionPage;
+    private static Battle battlePage;
     private static Warrior warrior;
     private static Wizard wizard;
     private static Cleric cleric;
 
     private static Player player;
-    private static ArrayList<Weapan> weapons = new ArrayList<>();
     private static ArrayList<Monster> monsters = new ArrayList<>();
 
+    private static Dagger dagger;
+    private static Sword sword;
+    private static Hammer hammer;
 
 
     public MainFrame() {
@@ -27,48 +28,32 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(30,30,600,600);
         setVisible(true);
-        setLayout(null);
+        setLayout(new CardLayout());
 
-        page1 = new FirstPage();
-        add(page1);
-
-        page2 = new CharSelection();
-        add(page2);
-
-        page3 = new Battle();
-        add(page3);
-
-        page2.setVisible(false);
-        page3.setVisible(false);
-
-        String name = CharSelection.getSelectedPlayerName();
-
-        warrior = new Warrior(name);
-        wizard = new Wizard(name);
-        cleric = new Cleric(name);
+        SplashPage splashpage = new SplashPage();
+        charSelectionPage = new CharSelection();
+        battlePage = new Battle();
 
 
-        String daggerDescription = "You get a +2 bonus on Sleight of Hand checks made to conceal a dagger on your body.";
-        ImageIcon daggerIcon = new ImageIcon(getClass().getResource("/images/dagger.jpg"));
-        daggerIcon.setImage(daggerIcon.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT));
-        Weapan dagger = new Weapan("Dagger",daggerIcon,"+2","1",daggerDescription);
+        charSelectionPage.setVisible(false);
+        battlePage.setVisible(false);
 
-        String swordDescription = "When the sword appears, you make a melee spell attack against " +
-                "a target of your choice within 5 feet of the sword. ";
-        ImageIcon swordIcon = new ImageIcon(getClass().getResource("/images/sword.jpg"));
-        swordIcon.setImage(swordIcon.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT));
-        Weapan sword = new Weapan("Sword",swordIcon,"+5","1",swordDescription);
+        add(splashpage);
+        add(charSelectionPage);
+        add(battlePage);
 
-        String hammerDescription = "The Lucerne hammer is a type of polearm with a three pronged hammer, a spiked tip, and a curved pick-like spike. ";
-        ImageIcon hammerIcon = new ImageIcon(getClass().getResource("/images/hammer.jpg"));
-        hammerIcon.setImage(hammerIcon.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT));
-        Weapan hammer = new Weapan("Hammer",hammerIcon,"+6","10",hammerDescription);
+//        String name = CharSelection.getSelectedPlayerName();
 
-        weapons.add(dagger);
-        weapons.add(sword);
-        weapons.add(hammer);
+        warrior = new Warrior();
+        wizard = new Wizard();
+        cleric = new Cleric();
 
-        player = new Player(name);
+
+        dagger = new Dagger("Dagger","+5","2");
+        sword = new Sword("Sword","+10","4");
+        hammer = new Hammer("Hammer","+15","10");
+
+        player = new Player();
 
         ImageIcon gazerIcon = new ImageIcon(getClass().getResource("/images/gazer.jpeg"));
         gazerIcon.setImage(gazerIcon.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT));
@@ -83,6 +68,7 @@ public class MainFrame extends JFrame {
         ImageIcon owlbearIcon = new ImageIcon(getClass().getResource("/images/Owlbear.jpeg"));
         owlbearIcon.setImage(owlbearIcon.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT));
         Monster owlbear = new Monster("Owlbear",owlbearIcon);
+
         owlbear.setHitPoint(num.nextInt(200));
         owlbear.setAgility(num.nextInt(200));
         owlbear.setDefense(num.nextInt(200));
@@ -94,29 +80,16 @@ public class MainFrame extends JFrame {
 
     }
 
-    public static FirstPage getPage1() {
-        return page1;
+
+    public static CharSelection getCharSelectionPage() {
+        return charSelectionPage;
     }
 
-    public static void setPage1(FirstPage page1) {
-        MainFrame.page1 = page1;
+
+    public static Battle getBattlePage() {
+        return battlePage;
     }
 
-    public static CharSelection getPage2() {
-        return page2;
-    }
-
-    public static void setPage2(CharSelection page2) {
-        MainFrame.page2 = page2;
-    }
-
-    public static Battle getPage3() {
-        return page3;
-    }
-
-    public static void setPage3(Battle page3) {
-        MainFrame.page3 = page3;
-    }
 
     public static Warrior getWarrior() {
         return warrior;
@@ -135,11 +108,20 @@ public class MainFrame extends JFrame {
         return player;
     }
 
-    public static ArrayList<Weapan> getWeapons() {
-        return weapons;
-    }
 
     public static ArrayList<Monster> getMonsters() {
         return monsters;
+    }
+
+    public static Dagger getDagger() {
+        return dagger;
+    }
+
+    public static Sword getSword() {
+        return sword;
+    }
+
+    public static Hammer getHammer() {
+        return hammer;
     }
 }
