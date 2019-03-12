@@ -1,6 +1,6 @@
 package ca.prog1400.model;
 
-public class Character {
+public abstract class Character {
 
     private int hitPoint;
     private int defense;

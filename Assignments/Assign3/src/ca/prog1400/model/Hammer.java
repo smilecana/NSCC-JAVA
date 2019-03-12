@@ -8,7 +8,7 @@ public class Hammer extends Weapan{
     private ImageIcon hammerPic;
 
 
-    public Hammer(String type, String attackModifier, String weight){
+    public Hammer(String type, int attackModifier, int weight){
         super(type,attackModifier,weight);
         this.hammerPic = new ImageIcon(getClass().getResource("/images/hammer.jpg"));
         hammerPic.setImage(hammerPic.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT));

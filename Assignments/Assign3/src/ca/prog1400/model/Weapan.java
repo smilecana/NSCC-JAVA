@@ -3,11 +3,11 @@ package ca.prog1400.model;
 public class Weapan {
 
     private String type;
-    private String attackModifier;
-    private String weight;
+    private int attackModifier;
+    private int weight;
 
 
-    public Weapan(String type, String attackModifier, String weight) {
+    public Weapan(String type, int attackModifier, int weight) {
         this.type = type;
         this.attackModifier = attackModifier;
         this.weight = weight;
@@ -18,12 +18,12 @@ public class Weapan {
     }
 
 
-    public String getAttackModifier() {
+    public int getAttackModifier() {
         return attackModifier;
     }
 
 
-    public String getWeight() {
+    public int getWeight() {
         return weight;
     }
 

@@ -42,16 +42,14 @@ public class MainFrame extends JFrame {
         add(charSelectionPage);
         add(battlePage);
 
-//        String name = CharSelection.getSelectedPlayerName();
-
         warrior = new Warrior();
         wizard = new Wizard();
         cleric = new Cleric();
 
 
-        dagger = new Dagger("Dagger","+5","2");
-        sword = new Sword("Sword","+10","4");
-        hammer = new Hammer("Hammer","+15","10");
+        dagger = new Dagger("Dagger",5,2);
+        sword = new Sword("Sword",10,4);
+        hammer = new Hammer("Hammer",15,10);
 
         player = new Player();
 

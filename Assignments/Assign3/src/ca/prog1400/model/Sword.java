@@ -7,7 +7,7 @@ public class Sword extends Weapan{
 
     private ImageIcon swordPic;
 
-    public Sword(String type, String attackModifier, String weight) {
+    public Sword(String type, int attackModifier, int weight) {
         super(type,attackModifier,weight);
 
         this.swordPic = new ImageIcon(getClass().getResource("/images/sword.jpg"));

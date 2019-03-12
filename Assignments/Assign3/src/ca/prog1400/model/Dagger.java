@@ -7,7 +7,7 @@ public class Dagger extends Weapan{
 
     private ImageIcon daggerPic;
 
-    public Dagger(String type, String attackModifier, String weight) {
+    public Dagger(String type, int attackModifier, int weight) {
         super(type,attackModifier,weight);
         this.daggerPic = new ImageIcon(getClass().getResource("/images/dagger.jpg"));
         daggerPic.setImage(daggerPic.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT));

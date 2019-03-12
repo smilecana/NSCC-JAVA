@@ -205,7 +205,7 @@ public class CharSelection extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if(groupType.getSelection()!=null && groupWeapon.getSelection()!=null && !textDefense.getText().isEmpty()) {
+                if(groupType.getSelection()!=null && groupWeapon.getSelection()!=null ) {
 
                     MainFrame.getBattlePage().setVisible(true);
                     setVisible(false);
@@ -235,6 +235,7 @@ public class CharSelection extends JPanel {
 
                 MainFrame.getPlayer().setPlayerName(nameText.getText());
                 tatsDisplay();
+                if (groupWeapon.getSelection()!=null) {giveWeaponToCharacter();}
 
             }
         });
@@ -252,6 +253,7 @@ public class CharSelection extends JPanel {
 
                 MainFrame.getPlayer().setPlayerName(nameText.getText());
                 tatsDisplay();
+                if (groupWeapon.getSelection()!=null) {giveWeaponToCharacter();}
             }
         });
         add(rbWizard);
@@ -268,6 +270,7 @@ public class CharSelection extends JPanel {
 
                 MainFrame.getPlayer().setPlayerName(nameText.getText());
                 tatsDisplay();
+                if (groupWeapon.getSelection()!=null) {giveWeaponToCharacter();}
             }
         });
         add(rbCleric);
@@ -290,11 +293,11 @@ public class CharSelection extends JPanel {
                 Dagger da = MainFrame.getDagger();
                 swapImagesWeapon(da.getDaggerPic());
                 getTextWeapon().setText(da.toString());
-                getTextAttack().setText(da.getAttackModifier());
-                getTextWeight().setText(da.getWeight());
+                getTextAttack().setText("+" + da.getAttackModifier());
+                getTextWeight().setText(String.valueOf(da.getWeight()));
 
                 setSelectedWeapon(da);
-                selectedCharacter();
+                giveWeaponToCharacter();
 
             }
         });
@@ -309,11 +312,11 @@ public class CharSelection extends JPanel {
                 Sword sw = MainFrame.getSword();
                 swapImagesWeapon(sw.getSwordPic());
                 getTextWeapon().setText(sw.toString());
-                getTextAttack().setText(sw.getAttackModifier());
-                getTextWeight().setText(sw.getWeight());
+                getTextAttack().setText("+" +sw.getAttackModifier());
+                getTextWeight().setText(String.valueOf(sw.getWeight()));
 
                 setSelectedWeapon(sw);
-                selectedCharacter();
+                giveWeaponToCharacter();
 
             }
         });
@@ -328,11 +331,11 @@ public class CharSelection extends JPanel {
                 Hammer ha = MainFrame.getHammer();
                 swapImagesWeapon(ha.getHammerPic());
                 getTextWeapon().setText(ha.toString());
-                getTextAttack().setText(ha.getAttackModifier());
-                getTextWeight().setText(ha.getWeight());
+                getTextAttack().setText("+"+ha.getAttackModifier());
+                getTextWeight().setText(String.valueOf(ha.getWeight()));
 
                 setSelectedWeapon(ha);
-                selectedCharacter();
+                giveWeaponToCharacter();
 
             }
         });
@@ -344,18 +347,20 @@ public class CharSelection extends JPanel {
         groupWeapon.add(rbHammer);
     }
 
-    private void selectedCharacter() {
-        if(rbWarrior.isSelected()) {
-            selectedCharater = "Warrior";
-            MainFrame.getWarrior().setWeapon(getSelectedWeapon());
-        }
-        else if (rbWizard.isSelected()) {
-            selectedCharater = "Wizard";
-            MainFrame.getWizard().setWeapon(getSelectedWeapon());
-        }
-        else if (rbCleric.isSelected()) {
-            selectedCharater = "Cleric";
-            MainFrame.getCleric().setWeapon(getSelectedWeapon());
+    private void giveWeaponToCharacter() {
+
+        if (groupType.getSelection()!=null) {
+
+            if (rbWarrior.isSelected()) {
+                selectedCharater = "Warrior";
+                MainFrame.getWarrior().setWeapon(getSelectedWeapon());
+            } else if (rbWizard.isSelected()) {
+                selectedCharater = "Wizard";
+                MainFrame.getWizard().setWeapon(getSelectedWeapon());
+            } else if (rbCleric.isSelected()) {
+                selectedCharater = "Cleric";
+                MainFrame.getCleric().setWeapon(getSelectedWeapon());
+            }
         }
     }
 

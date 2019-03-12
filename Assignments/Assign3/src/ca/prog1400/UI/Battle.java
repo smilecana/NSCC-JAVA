@@ -112,8 +112,8 @@ public class Battle extends JPanel {
             imagePlayer.setIcon(wi.getWizardPic());
 
             weaponType = wi.getWeapon().getType();
-            weaponWeight = wi.getWeapon().getWeight();
-            weapongAttack = wi.getWeapon().getAttackModifier();
+            weaponWeight = String.valueOf(wi.getWeapon().getWeight());
+            weapongAttack = String.valueOf(wi.getWeapon().getAttackModifier());
 
         }
         else if(CharSelection.getSelectedCharater().equals("Warrior")) {
@@ -123,8 +123,8 @@ public class Battle extends JPanel {
             imagePlayer.setIcon(wa.getWarriorPic());
 
             weaponType = wa.getWeapon().getType();
-            weaponWeight = wa.getWeapon().getWeight();
-            weapongAttack = wa.getWeapon().getAttackModifier();
+            weaponWeight = String.valueOf(wa.getWeapon().getWeight());
+            weapongAttack = String.valueOf(wa.getWeapon().getAttackModifier());
 
         }
         else if(CharSelection.getSelectedCharater().equals("Cleric")) {
@@ -134,8 +134,8 @@ public class Battle extends JPanel {
             imagePlayer.setIcon(cer.getClericPic());
 
             weaponType = cer.getWeapon().getType();
-            weaponWeight = cer.getWeapon().getWeight();
-            weapongAttack = cer.getWeapon().getAttackModifier();
+            weaponWeight = String.valueOf(cer.getWeapon().getWeight());
+            weapongAttack = String.valueOf(cer.getWeapon().getAttackModifier());
 
         }
 
